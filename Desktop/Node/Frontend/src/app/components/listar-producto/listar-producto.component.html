@@ -1,0 +1,47 @@
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center" style="background-color:#e4e0e0">
+                    <span class="titleTable">LISTA DE PRODUCTOS</span>
+                    
+                    <button class="btn btn-success float-end" routerLink="crear-producto"> Agregar nuevo</button> 
+                    <table *ngIf = "listProductos.length > 0 " class="table mt-4">
+                        <thead>
+                          <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio de compra</th>
+                            <th scope="col">Precio de venta</th>
+                            <th scope="col">presentacion</th>
+                            <th scope="col">categoria</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let producto of listProductos">
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.precioCompra | currency: 'USD'}}</td>
+                            <td>{{ producto.precioVenta | currency: 'USD'}}</td>
+                            <td>{{ producto.presentacion }}</td>
+                            <td>{{ producto.categoria }}</td>
+                            <td>
+                              <i (click)="eliminarProducto(producto._id)" class="far fa-trash-alt text-danger"></i>
+                            </td>
+                            <td>
+                              <i [routerLink]="['/editar-producto', producto._id]" class="far fa-edit text-primary"></i>
+                            </td>
+                          </tr>
+                          <tr>                            
+                            <td colspan="7"><i> Fin de productos</i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 *ngIf = "listProductos.length == 0 ">No hay productos registrados</h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
